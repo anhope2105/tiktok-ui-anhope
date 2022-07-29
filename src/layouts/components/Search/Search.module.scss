@@ -1,0 +1,86 @@
+.search,
+.search-results {
+    width: 361px;
+}
+.search {
+    height: 46px;
+    display: flex;
+    padding-left: 16px;
+    background: rgba(22, 24, 35, 0.06);
+    border-radius: var(--search-border-radius);
+    position: relative;
+    border: 1.5px solid transparent;
+    input {
+        display: block;
+        height: 100%;
+        width: 252px;
+        color: var(--black);
+        padding: 12px;
+        background-color: transparent;
+        font-size: 16px;
+        caret-color: red;
+    }
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        width: 1px;
+        top: var(--search-top-spacer);
+        right: var(--search-width-button);
+        background-color: #ccc;
+    }
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+.clear,
+.loading {
+    position: absolute;
+    right: calc(var(--search-width-button) + 16px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+}
+.loading {
+    animation: spiner 0.8s linear infinite;
+}
+
+@keyframes spiner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+.search-title {
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+    padding: 5px 12px;
+    font-size: 14px;
+}
+.search-btn {
+    position: absolute;
+    height: 100%;
+    right: 0px;
+    justify-content: center;
+    align-items: center;
+    width: var(--search-width-button);
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    font-size: 0.8rem;
+    color: rgba(22, 24, 35, 0.34);
+    &:hover {
+        cursor: pointer;
+        background: rgba(22, 24, 35, 0.03);
+    }
+    &:active {
+        background: rgba(22, 24, 35, 0.06);
+    }
+    &:focus:not(:focus-visible) ~ input {
+        border: none;
+    }
+}
